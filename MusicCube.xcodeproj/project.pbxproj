@@ -30,6 +30,8 @@
 		0B61B4E1175839CE005D5E99 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4DF175839CE005D5E99 /* scene.cpp */; };
 		0B61B4E717583D58005D5E99 /* HHScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4E617583D58005D5E99 /* HHScene.mm */; };
 		0B61B4E817583D58005D5E99 /* HHScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4E617583D58005D5E99 /* HHScene.mm */; };
+		0B61B4EB175860F7005D5E99 /* TriangleBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4EA175860F7005D5E99 /* TriangleBatch.m */; };
+		0B61B4EC175860F7005D5E99 /* TriangleBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4EA175860F7005D5E99 /* TriangleBatch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		0B61B4E0175839CE005D5E99 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
 		0B61B4E517583D58005D5E99 /* HHScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHScene.h; sourceTree = "<group>"; };
 		0B61B4E617583D58005D5E99 /* HHScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HHScene.mm; sourceTree = "<group>"; };
+		0B61B4E9175860F7005D5E99 /* TriangleBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleBatch.h; sourceTree = "<group>"; };
+		0B61B4EA175860F7005D5E99 /* TriangleBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleBatch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,8 @@
 				0B61B4E0175839CE005D5E99 /* scene.h */,
 				0B61B4E517583D58005D5E99 /* HHScene.h */,
 				0B61B4E617583D58005D5E99 /* HHScene.mm */,
+				0B61B4E9175860F7005D5E99 /* TriangleBatch.h */,
+				0B61B4EA175860F7005D5E99 /* TriangleBatch.m */,
 			);
 			path = MusicCube;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 				0B61B4BE175837C2005D5E99 /* ViewController.m in Sources */,
 				0B61B4E1175839CE005D5E99 /* scene.cpp in Sources */,
 				0B61B4E717583D58005D5E99 /* HHScene.mm in Sources */,
+				0B61B4EB175860F7005D5E99 /* TriangleBatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +318,7 @@
 			files = (
 				0B61B4D6175837C2005D5E99 /* MusicCubeTests.m in Sources */,
 				0B61B4E817583D58005D5E99 /* HHScene.mm in Sources */,
+				0B61B4EC175860F7005D5E99 /* TriangleBatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
