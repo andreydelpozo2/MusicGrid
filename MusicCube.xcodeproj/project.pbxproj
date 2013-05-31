@@ -32,6 +32,10 @@
 		0B61B4E817583D58005D5E99 /* HHScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4E617583D58005D5E99 /* HHScene.mm */; };
 		0B61B4EB175860F7005D5E99 /* TriangleBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4EA175860F7005D5E99 /* TriangleBatch.m */; };
 		0B61B4EC175860F7005D5E99 /* TriangleBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4EA175860F7005D5E99 /* TriangleBatch.m */; };
+		0B61B4F317586E52005D5E99 /* HHCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4F217586E52005D5E99 /* HHCamera.m */; };
+		0B61B4F417586E52005D5E99 /* HHCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4F217586E52005D5E99 /* HHCamera.m */; };
+		0B61B4F717586EBC005D5E99 /* ArcBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4F517586EBC005D5E99 /* ArcBall.cpp */; };
+		0B61B4F817586EBC005D5E99 /* ArcBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4F517586EBC005D5E99 /* ArcBall.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +81,10 @@
 		0B61B4E617583D58005D5E99 /* HHScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HHScene.mm; sourceTree = "<group>"; };
 		0B61B4E9175860F7005D5E99 /* TriangleBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleBatch.h; sourceTree = "<group>"; };
 		0B61B4EA175860F7005D5E99 /* TriangleBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleBatch.m; sourceTree = "<group>"; };
+		0B61B4F117586E52005D5E99 /* HHCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHCamera.h; sourceTree = "<group>"; };
+		0B61B4F217586E52005D5E99 /* HHCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHCamera.m; sourceTree = "<group>"; };
+		0B61B4F517586EBC005D5E99 /* ArcBall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArcBall.cpp; sourceTree = "<group>"; };
+		0B61B4F617586EBC005D5E99 /* ArcBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcBall.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +148,8 @@
 		0B61B4A6175837C2005D5E99 /* MusicCube */ = {
 			isa = PBXGroup;
 			children = (
+				0B61B4F517586EBC005D5E99 /* ArcBall.cpp */,
+				0B61B4F617586EBC005D5E99 /* ArcBall.h */,
 				0B61B4AF175837C2005D5E99 /* AppDelegate.h */,
 				0B61B4B0175837C2005D5E99 /* AppDelegate.m */,
 				0B61B4B8175837C2005D5E99 /* Shader.fsh */,
@@ -154,6 +164,8 @@
 				0B61B4E617583D58005D5E99 /* HHScene.mm */,
 				0B61B4E9175860F7005D5E99 /* TriangleBatch.h */,
 				0B61B4EA175860F7005D5E99 /* TriangleBatch.m */,
+				0B61B4F117586E52005D5E99 /* HHCamera.h */,
+				0B61B4F217586E52005D5E99 /* HHCamera.m */,
 			);
 			path = MusicCube;
 			sourceTree = "<group>";
@@ -309,6 +321,8 @@
 				0B61B4E1175839CE005D5E99 /* scene.cpp in Sources */,
 				0B61B4E717583D58005D5E99 /* HHScene.mm in Sources */,
 				0B61B4EB175860F7005D5E99 /* TriangleBatch.m in Sources */,
+				0B61B4F317586E52005D5E99 /* HHCamera.m in Sources */,
+				0B61B4F717586EBC005D5E99 /* ArcBall.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +333,8 @@
 				0B61B4D6175837C2005D5E99 /* MusicCubeTests.m in Sources */,
 				0B61B4E817583D58005D5E99 /* HHScene.mm in Sources */,
 				0B61B4EC175860F7005D5E99 /* TriangleBatch.m in Sources */,
+				0B61B4F417586E52005D5E99 /* HHCamera.m in Sources */,
+				0B61B4F817586EBC005D5E99 /* ArcBall.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
