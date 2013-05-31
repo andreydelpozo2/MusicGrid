@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "HHArcBall.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -112,18 +113,28 @@ GLfloat gCubeVertexData[216] =
    view.context = self.context;
    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
    
-   
+   [self initGestureRecognizers];
    
    [self setupGL];
 }
 
 -(void)initGestureRecognizers
 {
+   //tap
    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
                                 initWithTarget:self action:@selector(handleTaps:)];
    self.tapGestureRecognizer.numberOfTouchesRequired = 1;
    self.tapGestureRecognizer.numberOfTouchesRequired =1;
    [self.view addGestureRecognizer:self.tapGestureRecognizer];
+   
+   //pan
+   
+   self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                       action:@selector(handlePanGestures:)];
+   self.panGestureRecognizer.maximumNumberOfTouches = 1;
+   self.panGestureRecognizer.minimumNumberOfTouches = 1;
+   [self.view addGestureRecognizer:self.panGestureRecognizer];
+   
 }
 //deprecated in IOS6, views are never purged in IOS6
 /*-(void)viewDidUnload
@@ -419,6 +430,12 @@ GLfloat gCubeVertexData[216] =
    NSLog(@"Tap in: %@\n",NSStringFromCGPoint(pt));
    
    
+}
+
+-(void)handlePanGestures:(UIPanGestureRecognizer*)sender
+{
+   CGPoint pt = [sender translationInView:sender.view];
+   NSLog(@"Pan vel:%@\n",NSStringFromCGPoint(pt));
 }
 
 @end
