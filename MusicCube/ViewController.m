@@ -111,9 +111,26 @@ GLfloat gCubeVertexData[216] =
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    
-    [self setupGL];
+   
+   
+   
+   [self setupGL];
 }
+
+-(void)initGestureRecognizers
+{
+   self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
+                                initWithTarget:self action:@selector(handleTaps:)];
+   self.tapGestureRecognizer.numberOfTouchesRequired = 1;
+   self.tapGestureRecognizer.numberOfTouchesRequired =1;
+   [self.view addGestureRecognizer:self.tapGestureRecognizer];
+}
+//deprecated in IOS6, views are never purged in IOS6
+/*-(void)viewDidUnload
+{
+ super viewDidUnload];
+ self.tapGestureRecognizer = nil;
+}*/
 
 - (void)dealloc
 {    
@@ -162,9 +179,11 @@ GLfloat gCubeVertexData[216] =
     glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
+    glVertexAttribPointer(GLKVertexAttribPosition, 3,
+                          GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
     glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
+    glVertexAttribPointer(GLKVertexAttribNormal, 3,
+                          GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
     
     glBindVertexArrayOES(0);
 }
@@ -189,7 +208,8 @@ GLfloat gCubeVertexData[216] =
 - (void)update
 {
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(
+                                       GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
     
     self.effect.transform.projectionMatrix = projectionMatrix;
     
@@ -230,7 +250,8 @@ GLfloat gCubeVertexData[216] =
     // Render the object again with ES2
     glUseProgram(_program);
     
-    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
+    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0,
+                       _modelViewProjectionMatrix.m);
     glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
     
     glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -292,8 +313,10 @@ GLfloat gCubeVertexData[216] =
     }
     
     // Get uniform locations.
-    uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
-    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");
+    uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] =
+         glGetUniformLocation(_program, "modelViewProjectionMatrix");
+    uniforms[UNIFORM_NORMAL_MATRIX] =
+         glGetUniformLocation(_program, "normalMatrix");
     
     // Release vertex and fragment shaders.
     if (vertShader) {
@@ -313,7 +336,8 @@ GLfloat gCubeVertexData[216] =
     GLint status;
     const GLchar *source;
     
-    source = (GLchar *)[[NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil] UTF8String];
+    source = (GLchar *)[[NSString stringWithContentsOfFile:file
+                                       encoding:NSUTF8StringEncoding error:nil] UTF8String];
     if (!source) {
         NSLog(@"Failed to load vertex shader");
         return NO;
@@ -386,6 +410,15 @@ GLfloat gCubeVertexData[216] =
     }
     
     return YES;
+}
+
+-(void)handleTaps:(UITapGestureRecognizer*)sender
+{
+   CGPoint pt = [sender locationOfTouch:0 inView:sender.view];
+   
+   NSLog(@"Tap in: %@\n",NSStringFromCGPoint(pt));
+   
+   
 }
 
 @end

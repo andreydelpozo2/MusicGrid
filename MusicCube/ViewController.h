@@ -10,5 +10,5 @@
 #import <GLKit/GLKit.h>
 
 @interface ViewController : GLKViewController
-
+@property (nonatomic,strong) UITapGestureRecognizer *tapGestureRecognizer;
 @end
