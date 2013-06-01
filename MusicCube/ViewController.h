@@ -12,4 +12,5 @@
 @interface ViewController : GLKViewController
 @property (nonatomic,strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic,strong) UIPanGestureRecognizer *panGestureRecognizer;
+- (IBAction)captureFrontBuffer:(id)sender;
 @end

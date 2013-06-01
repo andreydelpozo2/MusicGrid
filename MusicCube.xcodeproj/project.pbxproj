@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0B2D4A42175A536C00B9160C /* HHShaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A41175A536C00B9160C /* HHShaderManager.m */; };
 		0B2D4A43175A536C00B9160C /* HHShaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A41175A536C00B9160C /* HHShaderManager.m */; };
+		0B2D4A47175A607700B9160C /* ioTGA.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A46175A607700B9160C /* ioTGA.c */; };
+		0B2D4A48175A607700B9160C /* ioTGA.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A46175A607700B9160C /* ioTGA.c */; };
+		0B2D4A4A175A6F7300B9160C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2D4A49175A6F7300B9160C /* QuartzCore.framework */; };
 		0B61B49D175837C2005D5E99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B49C175837C2005D5E99 /* UIKit.framework */; };
 		0B61B49F175837C2005D5E99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B49E175837C2005D5E99 /* Foundation.framework */; };
 		0B61B4A1175837C2005D5E99 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B4A0175837C2005D5E99 /* CoreGraphics.framework */; };
@@ -57,6 +60,9 @@
 /* Begin PBXFileReference section */
 		0B2D4A40175A536C00B9160C /* HHShaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHShaderManager.h; sourceTree = "<group>"; };
 		0B2D4A41175A536C00B9160C /* HHShaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHShaderManager.m; sourceTree = "<group>"; };
+		0B2D4A45175A604D00B9160C /* ioTGA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioTGA.h; sourceTree = "<group>"; };
+		0B2D4A46175A607700B9160C /* ioTGA.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioTGA.c; sourceTree = "<group>"; };
+		0B2D4A49175A6F7300B9160C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0B61B499175837C2005D5E99 /* MusicCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B61B49C175837C2005D5E99 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0B61B49E175837C2005D5E99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B2D4A4A175A6F7300B9160C /* QuartzCore.framework in Frameworks */,
 				0B61B49D175837C2005D5E99 /* UIKit.framework in Frameworks */,
 				0B61B49F175837C2005D5E99 /* Foundation.framework in Frameworks */,
 				0B61B4A1175837C2005D5E99 /* CoreGraphics.framework in Frameworks */,
@@ -128,6 +135,7 @@
 		0B61B490175837C2005D5E99 = {
 			isa = PBXGroup;
 			children = (
+				0B2D4A49175A6F7300B9160C /* QuartzCore.framework */,
 				0B61B4A6175837C2005D5E99 /* MusicCube */,
 				0B61B4CE175837C2005D5E99 /* MusicCubeTests */,
 				0B61B49B175837C2005D5E99 /* Frameworks */,
@@ -184,6 +192,8 @@
 				0B61B4FF17598744005D5E99 /* matrixDefs.c */,
 				0B2D4A40175A536C00B9160C /* HHShaderManager.h */,
 				0B2D4A41175A536C00B9160C /* HHShaderManager.m */,
+				0B2D4A45175A604D00B9160C /* ioTGA.h */,
+				0B2D4A46175A607700B9160C /* ioTGA.c */,
 			);
 			path = MusicCube;
 			sourceTree = "<group>";
@@ -344,6 +354,7 @@
 				0B61B4FB1759379F005D5E99 /* HHArcBall.mm in Sources */,
 				0B61B50017598745005D5E99 /* matrixDefs.c in Sources */,
 				0B2D4A42175A536C00B9160C /* HHShaderManager.m in Sources */,
+				0B2D4A47175A607700B9160C /* ioTGA.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +370,7 @@
 				0B61B4FC1759379F005D5E99 /* HHArcBall.mm in Sources */,
 				0B61B50117598745005D5E99 /* matrixDefs.c in Sources */,
 				0B2D4A43175A536C00B9160C /* HHShaderManager.m in Sources */,
+				0B2D4A48175A607700B9160C /* ioTGA.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

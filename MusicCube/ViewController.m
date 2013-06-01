@@ -9,6 +9,11 @@
 #import "ViewController.h"
 #import "HHArcBall.h"
 #import "HHShaderManager.h"
+#include "ioTGA.h"
+#import <QuartzCore/QuartzCore.h>
+
+#import <OpenGLES/EAGL.h>
+#import <OpenGLES/EAGLDrawable.h>
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -95,6 +100,7 @@ GLfloat gCubeVertexData[216] =
    GLuint _vertexArray;
    GLuint _vertexBuffer;
    BOOL   _dragging;
+   BOOL _doCapture;
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -115,6 +121,7 @@ GLfloat gCubeVertexData[216] =
 {
    [super viewDidLoad];
    
+   _doCapture = FALSE;
    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
    
    if (!self.context) {
@@ -135,6 +142,15 @@ GLfloat gCubeVertexData[216] =
    _shaderManager = [[HHShaderManager alloc] init];
    
    [self setupGL];
+   
+   /*
+   CAEAGLLayer *eaglLayer = (CAEAGLLayer *) self.view.layer;
+   eaglLayer.drawableProperties = @{
+                                    kEAGLDrawablePropertyRetainedBacking: [NSNumber numberWithBool:YES],
+                                    kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8
+                                    };*/
+   
+
 }
 
 -(void)initGestureRecognizers
@@ -283,6 +299,9 @@ GLfloat gCubeVertexData[216] =
    [_shaderManager  useShaderWithMVP:_modelViewProjectionMatrix andNormalMatrix:_normalMatrix];
    
    glDrawArrays(GL_TRIANGLES, 0, 36);
+   
+   
+
 }
 
 
@@ -361,5 +380,59 @@ GLfloat gCubeVertexData[216] =
    NSLog(@"touchesCancelled at %@\n",NSStringFromCGPoint(pt));
 
    _dragging =FALSE;
+}
+
+-(NSString*)generateDBName
+{
+   
+   NSArray* searchPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, TRUE);
+   NSString* path;
+   if(searchPath.count == 0)
+   {
+      return @"";
+   }
+   
+   path = [searchPath objectAtIndex:0];
+   
+   NSFileManager* fm = [NSFileManager defaultManager];
+   
+   NSString* dbPath;
+   for (int ii=0;ii<99999; ii++) {
+      NSString* name = [NSString stringWithFormat:@"%@/capture_%05d.tga",path,ii ];
+      if([fm fileExistsAtPath:name] == NO)
+      {
+         dbPath = [NSString stringWithString:name];
+         break;
+      }
+   }
+   
+   if([dbPath length]==0)
+   {
+      dbPath = [NSString stringWithFormat:@"%@/capture_%05d.tga",path, 0 ];
+   }
+   
+   return dbPath;
+}
+
+- (IBAction)captureFrontBuffer:(id)sender {
+   
+   _doCapture = TRUE;
+   if(_doCapture){
+      NSString* capName = [self generateDBName];
+      
+      const char* name = [capName cStringUsingEncoding:NSASCIIStringEncoding];
+      
+      NSLog(@"Saving %s\n",name);
+      
+      if(gltGrabScreenTGA(name)>0)
+      {
+         NSLog(@"It worked\n");
+      }
+      else
+      {
+         NSLog(@"It failed\n");
+      }
+      _doCapture = FALSE;
+   }
 }
 @end
