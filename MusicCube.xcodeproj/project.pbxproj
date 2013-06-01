@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B2D4A42175A536C00B9160C /* HHShaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A41175A536C00B9160C /* HHShaderManager.m */; };
+		0B2D4A43175A536C00B9160C /* HHShaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A41175A536C00B9160C /* HHShaderManager.m */; };
 		0B61B49D175837C2005D5E99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B49C175837C2005D5E99 /* UIKit.framework */; };
 		0B61B49F175837C2005D5E99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B49E175837C2005D5E99 /* Foundation.framework */; };
 		0B61B4A1175837C2005D5E99 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B4A0175837C2005D5E99 /* CoreGraphics.framework */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B2D4A40175A536C00B9160C /* HHShaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHShaderManager.h; sourceTree = "<group>"; };
+		0B2D4A41175A536C00B9160C /* HHShaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHShaderManager.m; sourceTree = "<group>"; };
 		0B61B499175837C2005D5E99 /* MusicCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B61B49C175837C2005D5E99 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0B61B49E175837C2005D5E99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -178,6 +182,8 @@
 				0B61B4FA1759379F005D5E99 /* HHArcBall.mm */,
 				0B61B4FE17598728005D5E99 /* matrixDefs.h */,
 				0B61B4FF17598744005D5E99 /* matrixDefs.c */,
+				0B2D4A40175A536C00B9160C /* HHShaderManager.h */,
+				0B2D4A41175A536C00B9160C /* HHShaderManager.m */,
 			);
 			path = MusicCube;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 				0B61B4F717586EBC005D5E99 /* ArcBall.cpp in Sources */,
 				0B61B4FB1759379F005D5E99 /* HHArcBall.mm in Sources */,
 				0B61B50017598745005D5E99 /* matrixDefs.c in Sources */,
+				0B2D4A42175A536C00B9160C /* HHShaderManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +358,7 @@
 				0B61B4F817586EBC005D5E99 /* ArcBall.cpp in Sources */,
 				0B61B4FC1759379F005D5E99 /* HHArcBall.mm in Sources */,
 				0B61B50117598745005D5E99 /* matrixDefs.c in Sources */,
+				0B2D4A43175A536C00B9160C /* HHShaderManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
