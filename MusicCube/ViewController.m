@@ -28,6 +28,16 @@ enum
    NUM_ATTRIBUTES
 };
 
+
+void printGLKMatrix(GLKMatrix4* m,NSString* title)
+{
+   NSLog(@"%@:\n",title);
+   NSLog(@"%.2f %.2f %.2f %.2f\n",m->m[0],m->m[4],m->m[8], m->m[12]);
+   NSLog(@"%.2f %.2f %.2f %.2f\n",m->m[1],m->m[5],m->m[9], m->m[13]);
+   NSLog(@"%.2f %.2f %.2f %.2f\n",m->m[2],m->m[6],m->m[10],m->m[14]);
+   NSLog(@"%.2f %.2f %.2f %.2f\n",m->m[3],m->m[7],m->m[11],m->m[15]);
+}
+
 GLfloat gCubeVertexData[216] =
 {
    // Data layout for each line below is:
@@ -84,9 +94,11 @@ GLfloat gCubeVertexData[216] =
    
    GLuint _vertexArray;
    GLuint _vertexBuffer;
+   BOOL   _dragging;
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
+@property (strong, nonatomic) HHArcBall   *arcBall;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -113,7 +125,22 @@ GLfloat gCubeVertexData[216] =
    view.context = self.context;
    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
    
-   [self initGestureRecognizers];
+   //[self initGestureRecognizers];
+   
+   _dragging = FALSE;
+   
+   self.arcBall = [[ HHArcBall alloc] initWithWidth: self.view.bounds.size.width
+                                      andHeight:self.view.bounds.size.height];
+   
+   CGPoint p1,p2;
+   p1.x = 376.5;
+   p1.y = 514.0;
+   [self.arcBall clickAtPoint:p1];
+
+   p2.x = 378.5;
+   p2.y = 514.0;
+   [self.arcBall dragToPoint:p2];
+
    
    [self setupGL];
 }
@@ -219,13 +246,18 @@ GLfloat gCubeVertexData[216] =
 - (void)update
 {
    float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
-   GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(
-                                                           GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
+   GLKMatrix4 projectionMatrix =
+               GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
    
    self.effect.transform.projectionMatrix = projectionMatrix;
    
-   GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -4.0f);
-   baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
+   GLKMatrix4 cameraTranslation = GLKMatrix4MakeTranslation(0.0f, 0.0f, -10.0f);
+   
+   GLKMatrix4 arcRot = [self.arcBall getRotation];
+   GLKMatrix4 baseModelViewMatrix = GLKMatrix4Multiply(cameraTranslation,arcRot);
+   //GLKMatrix4 baseModelViewMatrix = cameraTranslation;
+
+//   baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
    
    // Compute the model view matrix for the object rendered with GLKit
    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -1.5f);
@@ -257,6 +289,7 @@ GLfloat gCubeVertexData[216] =
    [self.effect prepareToDraw];
    
    glDrawArrays(GL_TRIANGLES, 0, 36);
+   
    
    // Render the object again with ES2
    glUseProgram(_program);
@@ -423,6 +456,8 @@ GLfloat gCubeVertexData[216] =
    return YES;
 }
 
+#pragma mark -  Touches and gestures
+
 -(void)handleTaps:(UITapGestureRecognizer*)sender
 {
    CGPoint pt = [sender locationOfTouch:0 inView:sender.view];
@@ -438,4 +473,63 @@ GLfloat gCubeVertexData[216] =
    NSLog(@"Pan vel:%@\n",NSStringFromCGPoint(pt));
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+ 
+   if(_dragging)
+      return;
+   
+   UITouch* t  = [touches anyObject];
+  
+   CGPoint pt = [t locationInView:self.view];
+   
+   NSLog(@"TouchesBegan at %@\n",NSStringFromCGPoint(pt));
+   
+   [self.arcBall clickAtPoint:pt];
+   
+   _dragging = TRUE;
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+
+   if(!_dragging)
+      return;
+
+   
+   UITouch* t  = [touches anyObject];
+   
+   CGPoint pt = [t locationInView:self.view];
+   
+   NSLog(@"touchesEnded at %@\n",NSStringFromCGPoint(pt));
+
+   _dragging =FALSE;
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+
+   if(!_dragging)
+      return;
+   
+
+
+      UITouch* t  = [touches anyObject];
+   
+   CGPoint pt = [t locationInView:self.view];
+   
+   NSLog(@"touchesMoved at %@\n",NSStringFromCGPoint(pt));
+
+   [self.arcBall dragToPoint:pt];
+
+   GLKMatrix4 arcRot = [self.arcBall getRotation];
+   printGLKMatrix(&arcRot, @"arcRot");
+}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+   UITouch* t  = [touches anyObject];
+   
+   CGPoint pt = [t locationInView:self.view];
+   
+   NSLog(@"touchesCancelled at %@\n",NSStringFromCGPoint(pt));
+
+   _dragging =FALSE;
+}
 @end

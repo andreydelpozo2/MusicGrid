@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+//#include "matrixDefs.h"
+#include <GLKit/GLKMathTypes.h>
 
 @interface HHArcBall : NSObject
-
+-(id)init;
+-(id)initWithWidth:(float)w andHeight:(float)h;
+-(void)clickAtPoint:(CGPoint)pt;
+-(void)dragToPoint:(CGPoint)pt;
+-(GLKMatrix4)getRotation;
 @end
