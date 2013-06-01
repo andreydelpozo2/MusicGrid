@@ -38,6 +38,8 @@
 		0B61B4F817586EBC005D5E99 /* ArcBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4F517586EBC005D5E99 /* ArcBall.cpp */; };
 		0B61B4FB1759379F005D5E99 /* HHArcBall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4FA1759379F005D5E99 /* HHArcBall.mm */; };
 		0B61B4FC1759379F005D5E99 /* HHArcBall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4FA1759379F005D5E99 /* HHArcBall.mm */; };
+		0B61B50017598745005D5E99 /* matrixDefs.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4FF17598744005D5E99 /* matrixDefs.c */; };
+		0B61B50117598745005D5E99 /* matrixDefs.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B61B4FF17598744005D5E99 /* matrixDefs.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		0B61B4F617586EBC005D5E99 /* ArcBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcBall.h; sourceTree = "<group>"; };
 		0B61B4F91759379F005D5E99 /* HHArcBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHArcBall.h; sourceTree = "<group>"; };
 		0B61B4FA1759379F005D5E99 /* HHArcBall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HHArcBall.mm; sourceTree = "<group>"; };
+		0B61B4FE17598728005D5E99 /* matrixDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrixDefs.h; sourceTree = "<group>"; };
+		0B61B4FF17598744005D5E99 /* matrixDefs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matrixDefs.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,8 @@
 				0B61B4F217586E52005D5E99 /* HHCamera.m */,
 				0B61B4F91759379F005D5E99 /* HHArcBall.h */,
 				0B61B4FA1759379F005D5E99 /* HHArcBall.mm */,
+				0B61B4FE17598728005D5E99 /* matrixDefs.h */,
+				0B61B4FF17598744005D5E99 /* matrixDefs.c */,
 			);
 			path = MusicCube;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				0B61B4F317586E52005D5E99 /* HHCamera.m in Sources */,
 				0B61B4F717586EBC005D5E99 /* ArcBall.cpp in Sources */,
 				0B61B4FB1759379F005D5E99 /* HHArcBall.mm in Sources */,
+				0B61B50017598745005D5E99 /* matrixDefs.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +350,7 @@
 				0B61B4F417586E52005D5E99 /* HHCamera.m in Sources */,
 				0B61B4F817586EBC005D5E99 /* ArcBall.cpp in Sources */,
 				0B61B4FC1759379F005D5E99 /* HHArcBall.mm in Sources */,
+				0B61B50117598745005D5E99 /* matrixDefs.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
