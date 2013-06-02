@@ -13,6 +13,6 @@
 @property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (BOOL)loadShaders;
-- (GLuint)getProgram;
--(void)useShaderWithMVP:(GLKMatrix4)mvp andNormalMatrix:(GLKMatrix3)normalMatrix;
+-(void)useShaderWithMVP:(GLKMatrix4)mvp andNormalMatrix:(GLKMatrix3)normalMatrix andColor:(GLKVector4)color;
+-(void)useFlatShaderWithMVP:(GLKMatrix4)mvp andColor:(GLKVector4)color;
 @end

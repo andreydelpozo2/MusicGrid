@@ -7,7 +7,7 @@
 //
 
 #import "HHShaderManager.h"
-
+#include <limits.h>
 
 // Uniform index.
 enum
@@ -17,12 +17,17 @@ enum
    NUM_UNIFORMS
 };
 
+enum{
+   SAMPLE_SHADER,
+   FLAT_SHADER,
+   MAX_SHADERS
+};
 
 @interface HHShaderManager()
 {
-   GLuint _program;
-   GLint _uniforms[NUM_UNIFORMS];
+   GLuint _programs[MAX_SHADERS];
 }
+- (BOOL)loadProgram:(GLuint*) programId fromFile:(NSString*)name;
 - (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
 - (BOOL)linkProgram:(GLuint)prog;
 - (BOOL)validateProgram:(GLuint)prog;
@@ -31,42 +36,42 @@ enum
 @implementation HHShaderManager
 
 #pragma mark -  Boilerplate OpenGLES2 code
-- (BOOL)loadShaders
+- (BOOL)loadProgram:(GLuint*) programId fromFile:(NSString*)name
 {
+
    GLuint vertShader, fragShader;
    NSString *vertShaderPathname, *fragShaderPathname;
    
    // Create shader program.
-   _program = glCreateProgram();
+   GLuint pid = glCreateProgram();
    
    // Create and compile vertex shader.
-   vertShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"vsh"];
+   vertShaderPathname = [[NSBundle mainBundle] pathForResource:name ofType:@"vsh"];
    if (![self compileShader:&vertShader type:GL_VERTEX_SHADER file:vertShaderPathname]) {
       NSLog(@"Failed to compile vertex shader");
       return NO;
    }
    
    // Create and compile fragment shader.
-   fragShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"fsh"];
+   fragShaderPathname = [[NSBundle mainBundle] pathForResource:name ofType:@"fsh"];
    if (![self compileShader:&fragShader type:GL_FRAGMENT_SHADER file:fragShaderPathname]) {
       NSLog(@"Failed to compile fragment shader");
       return NO;
    }
-   
-   // Attach vertex shader to program.
-   glAttachShader(_program, vertShader);
+
+   glAttachShader(pid, vertShader);
    
    // Attach fragment shader to program.
-   glAttachShader(_program, fragShader);
+   glAttachShader(pid, fragShader);
    
    // Bind attribute locations.
    // This needs to be done prior to linking.
-   glBindAttribLocation(_program, GLKVertexAttribPosition, "position");
-   glBindAttribLocation(_program, GLKVertexAttribNormal, "normal");
+   glBindAttribLocation(pid, GLKVertexAttribPosition, "position");
+   glBindAttribLocation(pid, GLKVertexAttribNormal, "normal");
    
    // Link program.
-   if (![self linkProgram:_program]) {
-      NSLog(@"Failed to link program: %d", _program);
+   if (![self linkProgram:pid]) {
+      NSLog(@"Failed to link program: %@", name);
       
       if (vertShader) {
          glDeleteShader(vertShader);
@@ -76,30 +81,41 @@ enum
          glDeleteShader(fragShader);
          fragShader = 0;
       }
-      if (_program) {
-         glDeleteProgram(_program);
-         _program = 0;
+      if (pid) {
+         glDeleteProgram(pid);
       }
       
       return NO;
    }
    
-   // Get uniform locations.
-   _uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] =
-   glGetUniformLocation(_program, "modelViewProjectionMatrix");
-   _uniforms[UNIFORM_NORMAL_MATRIX] =
-   glGetUniformLocation(_program, "normalMatrix");
    
    // Release vertex and fragment shaders.
    if (vertShader) {
-      glDetachShader(_program, vertShader);
+      glDetachShader(pid, vertShader);
       glDeleteShader(vertShader);
    }
    if (fragShader) {
-      glDetachShader(_program, fragShader);
+      glDetachShader(pid, fragShader);
       glDeleteShader(fragShader);
    }
    
+   *programId = pid;
+   return YES;
+}
+
+- (BOOL)loadShaders
+{
+   GLuint progId =0;
+   if([self loadProgram:&progId fromFile:@"Shader"])
+   {
+      _programs[SAMPLE_SHADER] = progId;
+   }
+   
+   if([self loadProgram:&progId fromFile:@"flatShader"])
+   {
+      _programs[FLAT_SHADER] = progId;
+   }
+
    return YES;
 }
 
@@ -187,22 +203,46 @@ enum
 #pragma mark -  Resource management
 -(void)dealloc
 {
-   if (_program) {
-      glDeleteProgram(_program);
-      _program = 0;
+   for(int ii=0;ii<MAX_SHADERS;ii++)
+   {
+      if (_programs[ii]) {
+         glDeleteProgram(_programs[ii]);
+         _programs[ii] = 0;
+      }
    }
 }
 
 #pragma mark -  External interface
-- (GLuint)getProgram
+
+-(void)useShaderWithMVP:(GLKMatrix4)mvp andNormalMatrix:(GLKMatrix3)normalMatrix andColor:(GLKVector4)color;
 {
-   return _program;
+   GLuint prog = _programs[SAMPLE_SHADER];
+   
+   glUseProgram(prog);
+   
+   GLint mvpU = glGetUniformLocation(prog, "modelViewProjectionMatrix");
+   GLint nmU = glGetUniformLocation(prog, "normalMatrix");
+   GLint iColor = glGetUniformLocation(prog, "vColor");
+   
+   glUniformMatrix4fv(mvpU, 1, 0, mvp.m);
+   glUniformMatrix3fv(nmU, 1, 0, normalMatrix.m);
+   glUniform4fv(iColor, 1, color.v);
 }
 
--(void)useShaderWithMVP:(GLKMatrix4)mvp andNormalMatrix:(GLKMatrix3)normalMatrix;
+-(void)useFlatShaderWithMVP:(GLKMatrix4)mvp andColor:(GLKVector4)color
 {
-   glUseProgram(_program);
-   glUniformMatrix4fv(_uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, mvp.m);
-   glUniformMatrix3fv(_uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, normalMatrix.m);
+   GLuint prog = _programs[FLAT_SHADER];
+   
+   glUseProgram(prog);
+   
+   GLint mvpU = glGetUniformLocation(prog, "mvpMatrix");
+   glUniformMatrix4fv(mvpU, 1, 0, mvp.m);
+   
+   GLint iColor = glGetUniformLocation(prog, "vColor");
+   glUniform4fv(iColor, 1, color.v);
+   
+   
+   
+   
 }
 @end
