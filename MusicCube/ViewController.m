@@ -16,6 +16,9 @@
 #import "HHShaderManager.h"
 #include "ioTGA.h"
 #import "HHFrameBufferObject.h"
+#import "HHScene.h"
+#import "HHGridActor.h"
+#import "HHCubeActor.h"
 
 
 
@@ -94,6 +97,7 @@ GLfloat gCubeVertexData[216] =
 @property (strong, nonatomic) HHArcBall   *arcBall;
 @property (strong, nonatomic) HHShaderManager *shaderManager;
 @property (strong, nonatomic) HHFrameBufferObject *backBuffer;
+@property (strong, nonatomic) HHScene *scene;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -204,6 +208,8 @@ GLfloat gCubeVertexData[216] =
    self.backBuffer = [[HHFrameBufferObject alloc]init];
    [self.backBuffer setup];
    
+   [self setupScene];
+   
 }
 
 - (void)tearDownGL
@@ -218,12 +224,34 @@ GLfloat gCubeVertexData[216] =
    
    [self.backBuffer tearDown];
    self.backBuffer = nil;
+   
+   self.scene = nil;
+}
+
+-(void)setupScene
+{
+   self.scene = [[HHScene alloc]init];
+   
+   //create grid actor
+   
+   HHGridActor* grid = [[HHGridActor alloc]init];
+   [self.scene addActor:grid];
+
+   //add some random cube actors
+   for(int ii =0;ii<4;ii++)
+   {
+      HHCubeActor* cube = [[HHCubeActor alloc]init];
+      [self.scene addActor:cube];
+   }
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update
 {
+   //update scene
+   [self.scene tick];
+   
    float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
    GLKMatrix4 projectionMatrix =
                GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
@@ -256,8 +284,12 @@ GLfloat gCubeVertexData[216] =
 
 -(void)ReadDraw:(BOOL)bFlat
 {
+ 
+   
    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+ 
+   [self.scene render];
    
    glBindVertexArrayOES(_vertexArray);
    
@@ -272,7 +304,6 @@ GLfloat gCubeVertexData[216] =
    // Render the object again with ES2
    if(bFlat)
    {
-      
       [_shaderManager  useFlatShaderWithMVP:_modelViewProjectionMatrix andColor:color ];
    }
    else

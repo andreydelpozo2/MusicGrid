@@ -30,6 +30,14 @@
 		0B2D4A6A175AD45C00B9160C /* flatShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D4A51175AA08700B9160C /* flatShader.vsh */; };
 		0B2D4A6D175B182200B9160C /* HHFrameBufferObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A6C175B182200B9160C /* HHFrameBufferObject.m */; };
 		0B2D4A6E175B182200B9160C /* HHFrameBufferObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A6C175B182200B9160C /* HHFrameBufferObject.m */; };
+		0B2D4A71175BA03E00B9160C /* HHActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A70175BA03D00B9160C /* HHActor.m */; };
+		0B2D4A72175BA03E00B9160C /* HHActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A70175BA03D00B9160C /* HHActor.m */; };
+		0B2D4A75175BA17C00B9160C /* HHGridActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A74175BA17C00B9160C /* HHGridActor.m */; };
+		0B2D4A76175BA17C00B9160C /* HHGridActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A74175BA17C00B9160C /* HHGridActor.m */; };
+		0B2D4A79175BA19400B9160C /* HHCubeActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A78175BA19300B9160C /* HHCubeActor.m */; };
+		0B2D4A7A175BA19400B9160C /* HHCubeActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A78175BA19300B9160C /* HHCubeActor.m */; };
+		0B2D4A7D175BABAA00B9160C /* HHBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A7C175BABA900B9160C /* HHBatch.m */; };
+		0B2D4A7E175BABAA00B9160C /* HHBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A7C175BABA900B9160C /* HHBatch.m */; };
 		0B61B49D175837C2005D5E99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B49C175837C2005D5E99 /* UIKit.framework */; };
 		0B61B49F175837C2005D5E99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B49E175837C2005D5E99 /* Foundation.framework */; };
 		0B61B4A1175837C2005D5E99 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B4A0175837C2005D5E99 /* CoreGraphics.framework */; };
@@ -91,6 +99,14 @@
 		0B2D4A58175AA13900B9160C /* flatShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = flatShader.fsh; sourceTree = "<group>"; };
 		0B2D4A6B175B182200B9160C /* HHFrameBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHFrameBufferObject.h; sourceTree = "<group>"; };
 		0B2D4A6C175B182200B9160C /* HHFrameBufferObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHFrameBufferObject.m; sourceTree = "<group>"; };
+		0B2D4A6F175BA03C00B9160C /* HHActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHActor.h; sourceTree = "<group>"; };
+		0B2D4A70175BA03D00B9160C /* HHActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHActor.m; sourceTree = "<group>"; };
+		0B2D4A73175BA17B00B9160C /* HHGridActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHGridActor.h; sourceTree = "<group>"; };
+		0B2D4A74175BA17C00B9160C /* HHGridActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHGridActor.m; sourceTree = "<group>"; };
+		0B2D4A77175BA19300B9160C /* HHCubeActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHCubeActor.h; sourceTree = "<group>"; };
+		0B2D4A78175BA19300B9160C /* HHCubeActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHCubeActor.m; sourceTree = "<group>"; };
+		0B2D4A7B175BABA900B9160C /* HHBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHBatch.h; sourceTree = "<group>"; };
+		0B2D4A7C175BABA900B9160C /* HHBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHBatch.m; sourceTree = "<group>"; };
 		0B61B499175837C2005D5E99 /* MusicCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B61B49C175837C2005D5E99 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0B61B49E175837C2005D5E99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -232,6 +248,14 @@
 				0B2D4A51175AA08700B9160C /* flatShader.vsh */,
 				0B2D4A6B175B182200B9160C /* HHFrameBufferObject.h */,
 				0B2D4A6C175B182200B9160C /* HHFrameBufferObject.m */,
+				0B2D4A6F175BA03C00B9160C /* HHActor.h */,
+				0B2D4A70175BA03D00B9160C /* HHActor.m */,
+				0B2D4A73175BA17B00B9160C /* HHGridActor.h */,
+				0B2D4A74175BA17C00B9160C /* HHGridActor.m */,
+				0B2D4A77175BA19300B9160C /* HHCubeActor.h */,
+				0B2D4A78175BA19300B9160C /* HHCubeActor.m */,
+				0B2D4A7B175BABA900B9160C /* HHBatch.h */,
+				0B2D4A7C175BABA900B9160C /* HHBatch.m */,
 			);
 			path = MusicCube;
 			sourceTree = "<group>";
@@ -402,6 +426,10 @@
 				0B2D4A42175A536C00B9160C /* HHShaderManager.m in Sources */,
 				0B2D4A47175A607700B9160C /* ioTGA.c in Sources */,
 				0B2D4A6D175B182200B9160C /* HHFrameBufferObject.m in Sources */,
+				0B2D4A71175BA03E00B9160C /* HHActor.m in Sources */,
+				0B2D4A75175BA17C00B9160C /* HHGridActor.m in Sources */,
+				0B2D4A79175BA19400B9160C /* HHCubeActor.m in Sources */,
+				0B2D4A7D175BABAA00B9160C /* HHBatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +455,10 @@
 				0B2D4A60175AA13A00B9160C /* diffuseShader.vsh in Sources */,
 				0B2D4A62175AA13A00B9160C /* flatShader.fsh in Sources */,
 				0B2D4A6E175B182200B9160C /* HHFrameBufferObject.m in Sources */,
+				0B2D4A72175BA03E00B9160C /* HHActor.m in Sources */,
+				0B2D4A76175BA17C00B9160C /* HHGridActor.m in Sources */,
+				0B2D4A7A175BA19400B9160C /* HHCubeActor.m in Sources */,
+				0B2D4A7E175BABAA00B9160C /* HHBatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

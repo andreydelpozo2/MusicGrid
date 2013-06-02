@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "HHActor.h"
 @interface HHScene : NSObject
 -(id)init;
 -(void)dealloc;
 -(void)addCube:(int)x andy:(int)y;
+-(void)addActor:(HHActor*)actor;
+-(void)tick;
+-(void)render;
 @end

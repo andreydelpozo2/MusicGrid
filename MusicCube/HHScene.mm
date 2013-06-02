@@ -14,6 +14,7 @@
 
 @interface HHScene()
 @property (nonatomic) andrey::Scene *scn;
+@property (strong,nonatomic) NSMutableArray* actors;
 @end
 
 
@@ -27,6 +28,7 @@
    if(self)
    {
       _scn = new andrey::Scene();
+      self.actors = [NSMutableArray arrayWithCapacity:10];
    }
    
    return self;
@@ -42,4 +44,20 @@
    _scn->addCube(x, y);
 }
 
+-(void)addActor:(HHActor*)actor
+{
+   [self.actors addObject:actor];
+}
+
+-(void)tick
+{
+}
+
+-(void)render
+{
+   for(HHActor* act in self.actors)
+   {
+      [act render];
+   }
+}
 @end
