@@ -101,6 +101,7 @@ GLfloat gCubeVertexData[216] =
    GLuint _vertexBuffer;
    BOOL   _dragging;
    BOOL _doCapture;
+   BOOL _useFlatShader;
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -122,6 +123,7 @@ GLfloat gCubeVertexData[216] =
    [super viewDidLoad];
    
    _doCapture = FALSE;
+   _useFlatShader = FALSE;
    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
    
    if (!self.context) {
@@ -132,7 +134,7 @@ GLfloat gCubeVertexData[216] =
    view.context = self.context;
    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
    
-   //[self initGestureRecognizers];
+   [self initGestureRecognizers];
    
    _dragging = FALSE;
    
@@ -163,12 +165,12 @@ GLfloat gCubeVertexData[216] =
    [self.view addGestureRecognizer:self.tapGestureRecognizer];
    
    //pan
-   
+   /*
    self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                        action:@selector(handlePanGestures:)];
    self.panGestureRecognizer.maximumNumberOfTouches = 1;
    self.panGestureRecognizer.minimumNumberOfTouches = 1;
-   [self.view addGestureRecognizer:self.panGestureRecognizer];
+   [self.view addGestureRecognizer:self.panGestureRecognizer];*/
    
 }
 //deprecated in IOS6, views are never purged in IOS6
@@ -294,9 +296,19 @@ GLfloat gCubeVertexData[216] =
    
    glDrawArrays(GL_TRIANGLES, 0, 36);
    
+
+   GLKVector4 color = {0.0f,0.5f,0.0,1.0f};
    
    // Render the object again with ES2
-   [_shaderManager  useShaderWithMVP:_modelViewProjectionMatrix andNormalMatrix:_normalMatrix];
+   if(_useFlatShader)
+   {
+
+      [_shaderManager  useFlatShaderWithMVP:_modelViewProjectionMatrix andColor:color ];
+   }
+   else
+   {
+      [_shaderManager  useShaderWithMVP:_modelViewProjectionMatrix andNormalMatrix:_normalMatrix andColor:color];
+   }
    
    glDrawArrays(GL_TRIANGLES, 0, 36);
    
@@ -313,6 +325,7 @@ GLfloat gCubeVertexData[216] =
    
    NSLog(@"Tap in: %@\n",NSStringFromCGPoint(pt));
    
+   _useFlatShader = !_useFlatShader;
    
 }
 
@@ -368,8 +381,8 @@ GLfloat gCubeVertexData[216] =
 
    [self.arcBall dragToPoint:pt];
 
-   GLKMatrix4 arcRot = [self.arcBall getRotation];
-   printGLKMatrix(&arcRot, @"arcRot");
+   //GLKMatrix4 arcRot = [self.arcBall getRotation];
+   //printGLKMatrix(&arcRot, @"arcRot");
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
