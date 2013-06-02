@@ -4,9 +4,9 @@
 // and uses a uniform color value.
 
 uniform mat4 mvpMatrix;
-attribute vec4 vVertex;
+attribute vec4 position;
 
 void main(void)
 {
-   gl_Position = mvpMatrix * vVertex;
+   gl_Position = mvpMatrix * position;
 }
