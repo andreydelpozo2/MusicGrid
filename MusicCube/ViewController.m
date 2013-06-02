@@ -6,14 +6,18 @@
 //  Copyright (c) 2013 Andrey Del Pozo. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+#import <OpenGLES/EAGL.h>
+#import <OpenGLES/EAGLDrawable.h>
+#include <OpenGLES/ES2/glext.h>
+
 #import "ViewController.h"
 #import "HHArcBall.h"
 #import "HHShaderManager.h"
 #include "ioTGA.h"
-#import <QuartzCore/QuartzCore.h>
+#import "HHFrameBufferObject.h"
 
-#import <OpenGLES/EAGL.h>
-#import <OpenGLES/EAGLDrawable.h>
+
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -107,6 +111,8 @@ GLfloat gCubeVertexData[216] =
 @property (strong, nonatomic) GLKBaseEffect *effect;
 @property (strong, nonatomic) HHArcBall   *arcBall;
 @property (strong, nonatomic) HHShaderManager *shaderManager;
+@property (strong, nonatomic) HHFrameBufferObject *backBuffer;
+
 - (void)setupGL;
 - (void)tearDownGL;
 
@@ -234,6 +240,10 @@ GLfloat gCubeVertexData[216] =
                          GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
    
    glBindVertexArrayOES(0);
+   
+   self.backBuffer = [[HHFrameBufferObject alloc]init];
+   [self.backBuffer setup];
+   
 }
 
 - (void)tearDownGL
@@ -245,6 +255,9 @@ GLfloat gCubeVertexData[216] =
    
    self.effect = nil;
    self.shaderManager = nil;
+   
+   [self.backBuffer tearDown];
+   self.backBuffer = nil;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
@@ -284,7 +297,7 @@ GLfloat gCubeVertexData[216] =
    _rotation += self.timeSinceLastUpdate * 0.5f;
 }
 
-- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
+-(void)ReadDraw:(BOOL)bFlat
 {
    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -296,13 +309,13 @@ GLfloat gCubeVertexData[216] =
    
    glDrawArrays(GL_TRIANGLES, 0, 36);
    
-
+   
    GLKVector4 color = {0.0f,0.5f,0.0,1.0f};
    
    // Render the object again with ES2
-   if(_useFlatShader)
+   if(bFlat)
    {
-
+      
       [_shaderManager  useFlatShaderWithMVP:_modelViewProjectionMatrix andColor:color ];
    }
    else
@@ -311,9 +324,21 @@ GLfloat gCubeVertexData[216] =
    }
    
    glDrawArrays(GL_TRIANGLES, 0, 36);
-   
-   
+}
 
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
+{
+   if(_doCapture){
+
+      [self.backBuffer use];
+      [self ReadDraw:YES];
+      [self doCapture ];
+      [self.backBuffer restore];
+      
+      _doCapture = FALSE;
+   }
+
+   [self ReadDraw:NO];
 }
 
 
@@ -430,22 +455,23 @@ GLfloat gCubeVertexData[216] =
 - (IBAction)captureFrontBuffer:(id)sender {
    
    _doCapture = TRUE;
-   if(_doCapture){
-      NSString* capName = [self generateDBName];
-      
-      const char* name = [capName cStringUsingEncoding:NSASCIIStringEncoding];
-      
-      NSLog(@"Saving %s\n",name);
-      
-      if(gltGrabScreenTGA(name)>0)
-      {
-         NSLog(@"It worked\n");
-      }
-      else
-      {
-         NSLog(@"It failed\n");
-      }
-      _doCapture = FALSE;
+
+}
+
+-(void)doCapture{
+   NSString* capName = [self generateDBName];
+   
+   const char* name = [capName cStringUsingEncoding:NSASCIIStringEncoding];
+   
+   NSLog(@"Saving %s\n",name);
+   
+   if(gltGrabScreenTGA(name)>0)
+   {
+      NSLog(@"It worked\n");
+   }
+   else
+   {
+      NSLog(@"It failed\n");
    }
 }
 @end

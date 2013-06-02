@@ -28,6 +28,8 @@
 		0B2D4A68175AD45C00B9160C /* identityShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D4A4B175A9FC500B9160C /* identityShader.vsh */; };
 		0B2D4A69175AD45C00B9160C /* identityShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D4A4E175A9FDB00B9160C /* identityShader.fsh */; };
 		0B2D4A6A175AD45C00B9160C /* flatShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D4A51175AA08700B9160C /* flatShader.vsh */; };
+		0B2D4A6D175B182200B9160C /* HHFrameBufferObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A6C175B182200B9160C /* HHFrameBufferObject.m */; };
+		0B2D4A6E175B182200B9160C /* HHFrameBufferObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A6C175B182200B9160C /* HHFrameBufferObject.m */; };
 		0B61B49D175837C2005D5E99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B49C175837C2005D5E99 /* UIKit.framework */; };
 		0B61B49F175837C2005D5E99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B49E175837C2005D5E99 /* Foundation.framework */; };
 		0B61B4A1175837C2005D5E99 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B4A0175837C2005D5E99 /* CoreGraphics.framework */; };
@@ -87,6 +89,8 @@
 		0B2D4A56175AA13900B9160C /* diffuseShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = diffuseShader.fsh; sourceTree = "<group>"; };
 		0B2D4A57175AA13900B9160C /* diffuseShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = diffuseShader.vsh; sourceTree = "<group>"; };
 		0B2D4A58175AA13900B9160C /* flatShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = flatShader.fsh; sourceTree = "<group>"; };
+		0B2D4A6B175B182200B9160C /* HHFrameBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHFrameBufferObject.h; sourceTree = "<group>"; };
+		0B2D4A6C175B182200B9160C /* HHFrameBufferObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHFrameBufferObject.m; sourceTree = "<group>"; };
 		0B61B499175837C2005D5E99 /* MusicCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B61B49C175837C2005D5E99 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0B61B49E175837C2005D5E99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -226,6 +230,8 @@
 				0B2D4A4B175A9FC500B9160C /* identityShader.vsh */,
 				0B2D4A4E175A9FDB00B9160C /* identityShader.fsh */,
 				0B2D4A51175AA08700B9160C /* flatShader.vsh */,
+				0B2D4A6B175B182200B9160C /* HHFrameBufferObject.h */,
+				0B2D4A6C175B182200B9160C /* HHFrameBufferObject.m */,
 			);
 			path = MusicCube;
 			sourceTree = "<group>";
@@ -395,6 +401,7 @@
 				0B61B50017598745005D5E99 /* matrixDefs.c in Sources */,
 				0B2D4A42175A536C00B9160C /* HHShaderManager.m in Sources */,
 				0B2D4A47175A607700B9160C /* ioTGA.c in Sources */,
+				0B2D4A6D175B182200B9160C /* HHFrameBufferObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +426,7 @@
 				0B2D4A5E175AA13A00B9160C /* diffuseShader.fsh in Sources */,
 				0B2D4A60175AA13A00B9160C /* diffuseShader.vsh in Sources */,
 				0B2D4A62175AA13A00B9160C /* flatShader.fsh in Sources */,
+				0B2D4A6E175B182200B9160C /* HHFrameBufferObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
