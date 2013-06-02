@@ -17,20 +17,6 @@
 /**                                                         **/
 /*************************************************************/
 
-/*
-#if __APPLE__
-   #if TARGET_OS_IPHONE
-      #include <OpenGLES/ES2/gl.h>
-   #elif TARGET_IPHONE_SIMULATOR
-      #include <OpenGLES/ES2/gl.h>
-   #elif TARGET_OS_MAC
-      #include <OpenGL/gl.h>												// Header File For The OpenGL32 Library
-      #include <OpenGl/glu.h>												// Header File For The GLu32 Library
-   #else
-   Wrong
-   #endif
-#endif
-*/
 #include <OpenGLES/ES2/gl.h>
 #include "math.h"                                               // Needed for sqrtf
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Andrey Del Pozo. All rights reserved.
 //
 
-//#include <OpenGLES/ES1/gl.h>
+#include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES2/gl.h>
 //#include <OpenGLES/ES2/glext.h>
 #include "ioTGA.h"
@@ -14,7 +14,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-/*
+
 ///////////////////////////////////////////////////////
 // Macros for big/little endian happiness
 // These are intentionally written to be easy to understand what they
@@ -60,7 +60,7 @@ inline void LITTLE_ENDIAN_DWORD(void *pWord)
 #define LITTLE_ENDIAN_DWORD
 #endif
 
-*/
+
 // Define targa header. This is only used locally.
 #pragma pack(1)
 typedef struct
@@ -87,7 +87,6 @@ int gltGrabScreenTGA(const char *szFileName)
    unsigned long lImageSize;   // Size in bytes of image
    GLbyte	*pBits = NULL;      // Pointer to bits
    GLint iViewport[4];         // Viewport in pixels
-//   GLenum lastBuffer;          // Storage for the current read buffer setting
    
 	// Get the viewport dimensions
 	glGetIntegerv(GL_VIEWPORT, iViewport);
@@ -102,17 +101,13 @@ int gltGrabScreenTGA(const char *szFileName)
 	
    // Read bits from color buffer
    glPixelStorei(GL_PACK_ALIGNMENT, 1);
-//	glPixelStorei(GL_PACK_ROW_LENGTH, 0);
-//	glPixelStorei(GL_PACK_SKIP_ROWS, 0);
-//	glPixelStorei(GL_PACK_SKIP_PIXELS, 0);
-   
-   // Get the current read buffer setting and save it. Switch to
-   // the front buffer and do the read operation. Finally, restore
-   // the read buffer state
-//   glGetIntegerv(GL_READ_BUFFER, (GLint *)&lastBuffer);
-//   glReadBuffer(GL_FRONT);
+#ifndef GL_ES_VERSION_2_0
+	glPixelStorei(GL_PACK_ROW_LENGTH, 0);
+	glPixelStorei(GL_PACK_SKIP_ROWS, 0);
+	glPixelStorei(GL_PACK_SKIP_PIXELS, 0);
+#endif
+
    glReadPixels(0, 0, iViewport[2], iViewport[3], GL_RGBA, GL_UNSIGNED_BYTE, pBits);
-//   glReadBuffer(lastBuffer);
    
    // Initialize the Targa header
    tgaHeader.identsize = 0;
@@ -129,15 +124,13 @@ int gltGrabScreenTGA(const char *szFileName)
    tgaHeader.descriptor = 0;
    
    // Do byte swap for big vs little endian
-#ifdef __APPLE__
-#ifdef __BIG_ENDIAN__
+#ifdef __BIG_ENDIAN__ //avoid compiler warnings
    LITTLE_ENDIAN_WORD(&tgaHeader.colorMapStart);
    LITTLE_ENDIAN_WORD(&tgaHeader.colorMapLength);
    LITTLE_ENDIAN_WORD(&tgaHeader.xstart);
    LITTLE_ENDIAN_WORD(&tgaHeader.ystart);
    LITTLE_ENDIAN_WORD(&tgaHeader.width);
    LITTLE_ENDIAN_WORD(&tgaHeader.height);
-#endif
 #endif
    
    // Attempt to open the file

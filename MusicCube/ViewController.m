@@ -21,24 +21,6 @@
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-// Uniform index.
-enum
-{
-   UNIFORM_MODELVIEWPROJECTION_MATRIX,
-   UNIFORM_NORMAL_MATRIX,
-   NUM_UNIFORMS
-};
-GLint uniforms[NUM_UNIFORMS];
-
-// Attribute index.
-enum
-{
-   ATTRIB_VERTEX,
-   ATTRIB_NORMAL,
-   NUM_ATTRIBUTES
-};
-
-
 void printGLKMatrix(GLKMatrix4* m,NSString* title)
 {
    NSLog(@"%@:\n",title);
@@ -115,11 +97,6 @@ GLfloat gCubeVertexData[216] =
 
 - (void)setupGL;
 - (void)tearDownGL;
-
-/*- (BOOL)loadShaders;
-- (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
-- (BOOL)linkProgram:(GLuint)prog;
-- (BOOL)validateProgram:(GLuint)prog;*/
 @end
 
 @implementation ViewController
@@ -151,14 +128,6 @@ GLfloat gCubeVertexData[216] =
    
    [self setupGL];
    
-   /*
-   CAEAGLLayer *eaglLayer = (CAEAGLLayer *) self.view.layer;
-   eaglLayer.drawableProperties = @{
-                                    kEAGLDrawablePropertyRetainedBacking: [NSNumber numberWithBool:YES],
-                                    kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8
-                                    };*/
-   
-
 }
 
 -(void)initGestureRecognizers
@@ -169,15 +138,6 @@ GLfloat gCubeVertexData[216] =
    self.tapGestureRecognizer.numberOfTouchesRequired = 1;
    self.tapGestureRecognizer.numberOfTouchesRequired =1;
    [self.view addGestureRecognizer:self.tapGestureRecognizer];
-   
-   //pan
-   /*
-   self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                                       action:@selector(handlePanGestures:)];
-   self.panGestureRecognizer.maximumNumberOfTouches = 1;
-   self.panGestureRecognizer.minimumNumberOfTouches = 1;
-   [self.view addGestureRecognizer:self.panGestureRecognizer];*/
-   
 }
 //deprecated in IOS6, views are never purged in IOS6
 /*-(void)viewDidUnload
@@ -274,9 +234,6 @@ GLfloat gCubeVertexData[216] =
    
    GLKMatrix4 arcRot = [self.arcBall getRotation];
    GLKMatrix4 baseModelViewMatrix = GLKMatrix4Multiply(cameraTranslation,arcRot);
-   //GLKMatrix4 baseModelViewMatrix = cameraTranslation;
-
-//   baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
    
    // Compute the model view matrix for the object rendered with GLKit
    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -1.5f);
@@ -346,18 +303,8 @@ GLfloat gCubeVertexData[216] =
 
 -(void)handleTaps:(UITapGestureRecognizer*)sender
 {
-   CGPoint pt = [sender locationOfTouch:0 inView:sender.view];
-   
-   NSLog(@"Tap in: %@\n",NSStringFromCGPoint(pt));
-   
+   //CGPoint pt = [sender locationOfTouch:0 inView:sender.view];
    _useFlatShader = !_useFlatShader;
-   
-}
-
--(void)handlePanGestures:(UIPanGestureRecognizer*)sender
-{
-   CGPoint pt = [sender translationInView:sender.view];
-   NSLog(@"Pan vel:%@\n",NSStringFromCGPoint(pt));
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -366,10 +313,7 @@ GLfloat gCubeVertexData[216] =
       return;
    
    UITouch* t  = [touches anyObject];
-  
    CGPoint pt = [t locationInView:self.view];
-   
-   NSLog(@"TouchesBegan at %@\n",NSStringFromCGPoint(pt));
    
    [self.arcBall clickAtPoint:pt];
    
@@ -380,13 +324,9 @@ GLfloat gCubeVertexData[216] =
 
    if(!_dragging)
       return;
-
    
-   UITouch* t  = [touches anyObject];
-   
-   CGPoint pt = [t locationInView:self.view];
-   
-   NSLog(@"touchesEnded at %@\n",NSStringFromCGPoint(pt));
+   //UITouch* t  = [touches anyObject];
+   //CGPoint pt = [t locationInView:self.view];
 
    _dragging =FALSE;
 }
@@ -396,26 +336,15 @@ GLfloat gCubeVertexData[216] =
    if(!_dragging)
       return;
    
-
-
-      UITouch* t  = [touches anyObject];
-   
+   UITouch* t  = [touches anyObject];
    CGPoint pt = [t locationInView:self.view];
    
-   NSLog(@"touchesMoved at %@\n",NSStringFromCGPoint(pt));
-
    [self.arcBall dragToPoint:pt];
-
-   //GLKMatrix4 arcRot = [self.arcBall getRotation];
-   //printGLKMatrix(&arcRot, @"arcRot");
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
-   UITouch* t  = [touches anyObject];
-   
-   CGPoint pt = [t locationInView:self.view];
-   
-   NSLog(@"touchesCancelled at %@\n",NSStringFromCGPoint(pt));
+   //UITouch* t  = [touches anyObject];
+   //CGPoint pt = [t locationInView:self.view];
 
    _dragging =FALSE;
 }
@@ -465,13 +394,9 @@ GLfloat gCubeVertexData[216] =
    
    NSLog(@"Saving %s\n",name);
    
-   if(gltGrabScreenTGA(name)>0)
+   if(gltGrabScreenTGA(name)<=0)
    {
-      NSLog(@"It worked\n");
-   }
-   else
-   {
-      NSLog(@"It failed\n");
+      NSLog(@"gltGrabScreenTGA failed saving %@\n",capName);
    }
 }
 @end
