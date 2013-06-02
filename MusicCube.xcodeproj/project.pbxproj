@@ -12,6 +12,22 @@
 		0B2D4A47175A607700B9160C /* ioTGA.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A46175A607700B9160C /* ioTGA.c */; };
 		0B2D4A48175A607700B9160C /* ioTGA.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A46175A607700B9160C /* ioTGA.c */; };
 		0B2D4A4A175A6F7300B9160C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2D4A49175A6F7300B9160C /* QuartzCore.framework */; };
+		0B2D4A4C175A9FC600B9160C /* identityShader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A4B175A9FC500B9160C /* identityShader.vsh */; };
+		0B2D4A4D175A9FC600B9160C /* identityShader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A4B175A9FC500B9160C /* identityShader.vsh */; };
+		0B2D4A4F175A9FDC00B9160C /* identityShader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A4E175A9FDB00B9160C /* identityShader.fsh */; };
+		0B2D4A50175A9FDC00B9160C /* identityShader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A4E175A9FDB00B9160C /* identityShader.fsh */; };
+		0B2D4A52175AA08700B9160C /* flatShader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A51175AA08700B9160C /* flatShader.vsh */; };
+		0B2D4A53175AA08700B9160C /* flatShader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A51175AA08700B9160C /* flatShader.vsh */; };
+		0B2D4A59175AA13A00B9160C /* defaultLight.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A54175AA13900B9160C /* defaultLight.fsh */; };
+		0B2D4A5A175AA13A00B9160C /* defaultLight.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A54175AA13900B9160C /* defaultLight.fsh */; };
+		0B2D4A5B175AA13A00B9160C /* defaultLight.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A55175AA13900B9160C /* defaultLight.vsh */; };
+		0B2D4A5C175AA13A00B9160C /* defaultLight.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A55175AA13900B9160C /* defaultLight.vsh */; };
+		0B2D4A5D175AA13A00B9160C /* diffuseShader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A56175AA13900B9160C /* diffuseShader.fsh */; };
+		0B2D4A5E175AA13A00B9160C /* diffuseShader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A56175AA13900B9160C /* diffuseShader.fsh */; };
+		0B2D4A5F175AA13A00B9160C /* diffuseShader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A57175AA13900B9160C /* diffuseShader.vsh */; };
+		0B2D4A60175AA13A00B9160C /* diffuseShader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A57175AA13900B9160C /* diffuseShader.vsh */; };
+		0B2D4A61175AA13A00B9160C /* flatShader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A58175AA13900B9160C /* flatShader.fsh */; };
+		0B2D4A62175AA13A00B9160C /* flatShader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D4A58175AA13900B9160C /* flatShader.fsh */; };
 		0B61B49D175837C2005D5E99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B49C175837C2005D5E99 /* UIKit.framework */; };
 		0B61B49F175837C2005D5E99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B49E175837C2005D5E99 /* Foundation.framework */; };
 		0B61B4A1175837C2005D5E99 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B61B4A0175837C2005D5E99 /* CoreGraphics.framework */; };
@@ -63,6 +79,14 @@
 		0B2D4A45175A604D00B9160C /* ioTGA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioTGA.h; sourceTree = "<group>"; };
 		0B2D4A46175A607700B9160C /* ioTGA.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioTGA.c; sourceTree = "<group>"; };
 		0B2D4A49175A6F7300B9160C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0B2D4A4B175A9FC500B9160C /* identityShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = identityShader.vsh; sourceTree = "<group>"; };
+		0B2D4A4E175A9FDB00B9160C /* identityShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = identityShader.fsh; sourceTree = "<group>"; };
+		0B2D4A51175AA08700B9160C /* flatShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = flatShader.vsh; sourceTree = "<group>"; };
+		0B2D4A54175AA13900B9160C /* defaultLight.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = defaultLight.fsh; sourceTree = "<group>"; };
+		0B2D4A55175AA13900B9160C /* defaultLight.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = defaultLight.vsh; sourceTree = "<group>"; };
+		0B2D4A56175AA13900B9160C /* diffuseShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = diffuseShader.fsh; sourceTree = "<group>"; };
+		0B2D4A57175AA13900B9160C /* diffuseShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = diffuseShader.vsh; sourceTree = "<group>"; };
+		0B2D4A58175AA13900B9160C /* flatShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = flatShader.fsh; sourceTree = "<group>"; };
 		0B61B499175837C2005D5E99 /* MusicCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B61B49C175837C2005D5E99 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0B61B49E175837C2005D5E99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -168,6 +192,11 @@
 		0B61B4A6175837C2005D5E99 /* MusicCube */ = {
 			isa = PBXGroup;
 			children = (
+				0B2D4A54175AA13900B9160C /* defaultLight.fsh */,
+				0B2D4A55175AA13900B9160C /* defaultLight.vsh */,
+				0B2D4A56175AA13900B9160C /* diffuseShader.fsh */,
+				0B2D4A57175AA13900B9160C /* diffuseShader.vsh */,
+				0B2D4A58175AA13900B9160C /* flatShader.fsh */,
 				0B61B4F517586EBC005D5E99 /* ArcBall.cpp */,
 				0B61B4F617586EBC005D5E99 /* ArcBall.h */,
 				0B61B4AF175837C2005D5E99 /* AppDelegate.h */,
@@ -194,6 +223,9 @@
 				0B2D4A41175A536C00B9160C /* HHShaderManager.m */,
 				0B2D4A45175A604D00B9160C /* ioTGA.h */,
 				0B2D4A46175A607700B9160C /* ioTGA.c */,
+				0B2D4A4B175A9FC500B9160C /* identityShader.vsh */,
+				0B2D4A4E175A9FDB00B9160C /* identityShader.fsh */,
+				0B2D4A51175AA08700B9160C /* flatShader.vsh */,
 			);
 			path = MusicCube;
 			sourceTree = "<group>";
@@ -355,6 +387,14 @@
 				0B61B50017598745005D5E99 /* matrixDefs.c in Sources */,
 				0B2D4A42175A536C00B9160C /* HHShaderManager.m in Sources */,
 				0B2D4A47175A607700B9160C /* ioTGA.c in Sources */,
+				0B2D4A4C175A9FC600B9160C /* identityShader.vsh in Sources */,
+				0B2D4A4F175A9FDC00B9160C /* identityShader.fsh in Sources */,
+				0B2D4A52175AA08700B9160C /* flatShader.vsh in Sources */,
+				0B2D4A59175AA13A00B9160C /* defaultLight.fsh in Sources */,
+				0B2D4A5B175AA13A00B9160C /* defaultLight.vsh in Sources */,
+				0B2D4A5D175AA13A00B9160C /* diffuseShader.fsh in Sources */,
+				0B2D4A5F175AA13A00B9160C /* diffuseShader.vsh in Sources */,
+				0B2D4A61175AA13A00B9160C /* flatShader.fsh in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +411,14 @@
 				0B61B50117598745005D5E99 /* matrixDefs.c in Sources */,
 				0B2D4A43175A536C00B9160C /* HHShaderManager.m in Sources */,
 				0B2D4A48175A607700B9160C /* ioTGA.c in Sources */,
+				0B2D4A4D175A9FC600B9160C /* identityShader.vsh in Sources */,
+				0B2D4A50175A9FDC00B9160C /* identityShader.fsh in Sources */,
+				0B2D4A53175AA08700B9160C /* flatShader.vsh in Sources */,
+				0B2D4A5A175AA13A00B9160C /* defaultLight.fsh in Sources */,
+				0B2D4A5C175AA13A00B9160C /* defaultLight.vsh in Sources */,
+				0B2D4A5E175AA13A00B9160C /* diffuseShader.fsh in Sources */,
+				0B2D4A60175AA13A00B9160C /* diffuseShader.vsh in Sources */,
+				0B2D4A62175AA13A00B9160C /* flatShader.fsh in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
