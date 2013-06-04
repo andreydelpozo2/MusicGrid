@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HHBatch.h"
 
 @interface HHActor : NSObject
+@property (strong,nonatomic) HHBatch* mesh;
 -(void)render;
 @end

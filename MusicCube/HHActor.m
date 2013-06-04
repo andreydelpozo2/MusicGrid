@@ -9,8 +9,9 @@
 #import "HHActor.h"
 
 @implementation HHActor
+@synthesize mesh;
 -(void)render
 {
-
+    [self.mesh draw];
 }
 @end
