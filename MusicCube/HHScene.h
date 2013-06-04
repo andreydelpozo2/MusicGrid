@@ -10,6 +10,7 @@
 #import "HHActor.h"
 @interface HHScene : NSObject
 -(id)init;
+-(void)setup;
 -(void)dealloc;
 -(void)addCube:(int)x andy:(int)y;
 -(void)addActor:(HHActor*)actor;
