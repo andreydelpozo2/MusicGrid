@@ -11,6 +11,6 @@
 @implementation HHCubeActor
 -(void)render
 {
-   NSLog(@"HHCubeActor:render");
+
 }
 @end

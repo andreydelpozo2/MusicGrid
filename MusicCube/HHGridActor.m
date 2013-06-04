@@ -11,6 +11,6 @@
 @implementation HHGridActor
 -(void)render
 {
-   NSLog(@"HHGridActor:render");
+
 }
 @end

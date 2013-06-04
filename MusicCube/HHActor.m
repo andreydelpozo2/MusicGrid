@@ -11,6 +11,6 @@
 @implementation HHActor
 -(void)render
 {
-   NSLog(@"HHActor:render");
+
 }
 @end
