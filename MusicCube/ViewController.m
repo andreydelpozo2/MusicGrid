@@ -98,7 +98,6 @@ GLfloat gCubeVertexData[216] =
 @property (strong, nonatomic) HHShaderManager *shaderManager;
 @property (strong, nonatomic) HHFrameBufferObject *backBuffer;
 @property (strong, nonatomic) HHScene *scene;
-@property (strong, nonatomic) HHBatch *myCube;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -245,7 +244,6 @@ GLfloat gCubeVertexData[216] =
       [self.scene addActor:cube];
    }
     
-    self.myCube = [HHSolidShapes makeCubeWithSide:2];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
@@ -316,9 +314,6 @@ GLfloat gCubeVertexData[216] =
    
    glDrawArrays(GL_TRIANGLES, 0, 36);
 
-    color.r = 1.0;
-    [_shaderManager  useShaderWithMVP:_modelViewProjectionMatrix andNormalMatrix:_normalMatrix andColor:color];
-    [self.myCube draw];
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
