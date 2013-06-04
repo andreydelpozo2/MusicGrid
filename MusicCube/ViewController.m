@@ -84,6 +84,7 @@ GLfloat gCubeVertexData[216] =
    
    GLKMatrix4 _modelViewProjectionMatrix;
    GLKMatrix3 _normalMatrix;
+    GLKMatrix4 _baseModelViewMatrix;
    float _rotation;
    
    GLuint _vertexArray;
@@ -208,8 +209,8 @@ GLfloat gCubeVertexData[216] =
    self.backBuffer = [[HHFrameBufferObject alloc]init];
    [self.backBuffer setup];
    
-   [self setupScene];
-   
+    self.scene = [[HHScene alloc]init];
+    [self.scene setup];
 }
 
 - (void)tearDownGL
@@ -228,24 +229,6 @@ GLfloat gCubeVertexData[216] =
    self.scene = nil;
 }
 
--(void)setupScene
-{
-   self.scene = [[HHScene alloc]init];
-   
-   //create grid actor
-   
-   HHGridActor* grid = [[HHGridActor alloc]init];
-   [self.scene addActor:grid];
-
-   //add some random cube actors
-   for(int ii =0;ii<4;ii++)
-   {
-      HHCubeActor* cube = [[HHCubeActor alloc]init];
-      [self.scene addActor:cube];
-   }
-    
-}
-
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update
@@ -262,19 +245,19 @@ GLfloat gCubeVertexData[216] =
    GLKMatrix4 cameraTranslation = GLKMatrix4MakeTranslation(0.0f, 0.0f, -10.0f);
    
    GLKMatrix4 arcRot = [self.arcBall getRotation];
-   GLKMatrix4 baseModelViewMatrix = GLKMatrix4Multiply(cameraTranslation,arcRot);
+   _baseModelViewMatrix = GLKMatrix4Multiply(cameraTranslation,arcRot);
    
    // Compute the model view matrix for the object rendered with GLKit
    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -1.5f);
    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-   modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+   modelViewMatrix = GLKMatrix4Multiply(_baseModelViewMatrix, modelViewMatrix);
    
    self.effect.transform.modelviewMatrix = modelViewMatrix;
    
    // Compute the model view matrix for the object rendered with ES2
    modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, 1.5f);
    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-   modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+   modelViewMatrix = GLKMatrix4Multiply(_baseModelViewMatrix, modelViewMatrix);
    
    _normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
    
@@ -289,9 +272,14 @@ GLfloat gCubeVertexData[216] =
    
    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
- 
+
+    GLKVector4 color = {0.0f,0.5f,0.0,1.0f};
+
+    GLKMatrix4 mvpCenter = GLKMatrix4Multiply(self.effect.transform.projectionMatrix, _baseModelViewMatrix);
+    
+   [_shaderManager  useFlatShaderWithMVP:mvpCenter andColor:color ];
    [self.scene render];
-   
+
    glBindVertexArrayOES(_vertexArray);
    
    // Render the object with GLKit
@@ -300,7 +288,7 @@ GLfloat gCubeVertexData[216] =
    glDrawArrays(GL_TRIANGLES, 0, 36);
    
    
-   GLKVector4 color = {0.0f,0.5f,0.0,1.0f};
+   
    
    // Render the object again with ES2
    if(bFlat)
