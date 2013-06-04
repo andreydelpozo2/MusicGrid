@@ -11,6 +11,6 @@
 @implementation HHCubeActor
 -(void)render
 {
-
+    [super render];
 }
 @end

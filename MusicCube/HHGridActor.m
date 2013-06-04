@@ -11,6 +11,6 @@
 @implementation HHGridActor
 -(void)render
 {
-
+    [super render];
 }
 @end
