@@ -19,6 +19,14 @@
 
 @implementation HHActor
 @synthesize mesh;
+
+-(id)init
+{
+    self = [super init];
+    _modelMatrix = GLKMatrix4Identity;
+    _rotationMatrix = GLKMatrix4Identity;
+    return self;
+}
 -(void)render
 {
     [self.mesh draw];

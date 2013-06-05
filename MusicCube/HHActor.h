@@ -11,6 +11,8 @@
 
 @interface HHActor : NSObject
 @property (strong,nonatomic) HHBatch* mesh;
+@property (nonatomic) GLKVector4 color;
+-(id)init;
 -(void)render;
 -(void)setRotationMatrix:(GLKMatrix4)rot;
 -(void)rotateBy:(GLfloat)radians around:(GLKVector3)axis;
