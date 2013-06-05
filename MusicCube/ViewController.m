@@ -20,6 +20,7 @@
 #import "HHGridActor.h"
 #import "HHCubeActor.h"
 #import "HHSolidShapes.h"
+#import "HHCamera.h"
 
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
@@ -99,6 +100,7 @@ GLfloat gCubeVertexData[216] =
 @property (strong, nonatomic) HHShaderManager *shaderManager;
 @property (strong, nonatomic) HHFrameBufferObject *backBuffer;
 @property (strong, nonatomic) HHScene *scene;
+@property (strong, nonatomic) HHCamera* camera;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -131,6 +133,10 @@ GLfloat gCubeVertexData[216] =
 
    _shaderManager = [[HHShaderManager alloc] init];
    
+    self.camera = [[HHCamera alloc]init];
+    float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
+    [self.camera setPerspective:65.0f withApect:aspect nearPlane:0.01f farPlane:100.0f];
+    [self.camera translateX:0.0f andY:0.0f andZ:-10.0f];
    [self setupGL];
    
 }
@@ -236,16 +242,14 @@ GLfloat gCubeVertexData[216] =
    //update scene
    [self.scene tick];
    
-   float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
-   GLKMatrix4 projectionMatrix =
-               GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
+    //assuming aspect does not change
+    GLKMatrix4 projectionMatrix =[self.camera getProjection];
+    self.effect.transform.projectionMatrix = projectionMatrix;
+    
+    [self.camera setRotationMatrix:[self.arcBall getRotation]];
    
-   self.effect.transform.projectionMatrix = projectionMatrix;
-   
-   GLKMatrix4 cameraTranslation = GLKMatrix4MakeTranslation(0.0f, 0.0f, -10.0f);
-   
-   GLKMatrix4 arcRot = [self.arcBall getRotation];
-   _baseModelViewMatrix = GLKMatrix4Multiply(cameraTranslation,arcRot);
+
+   _baseModelViewMatrix = [self.camera getMatrix];
    
    // Compute the model view matrix for the object rendered with GLKit
    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -1.5f);
