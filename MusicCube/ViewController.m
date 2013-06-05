@@ -131,14 +131,17 @@ GLfloat gCubeVertexData[216] =
    self.arcBall = [[ HHArcBall alloc] initWithWidth: self.view.bounds.size.width
                                       andHeight:self.view.bounds.size.height];
 
-   _shaderManager = [[HHShaderManager alloc] init];
+
+    
+    [self setupGL];
    
     self.camera = [[HHCamera alloc]init];
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
     [self.camera setPerspective:65.0f withApect:aspect nearPlane:0.01f farPlane:100.0f];
     [self.camera translateX:0.0f andY:0.0f andZ:-10.0f];
-   [self setupGL];
-   
+    
+    self.scene = [[HHScene alloc]init];
+    [self.scene setup];
 }
 
 -(void)initGestureRecognizers
@@ -188,6 +191,7 @@ GLfloat gCubeVertexData[216] =
 {
    [EAGLContext setCurrentContext:self.context];
    
+    _shaderManager = [[HHShaderManager alloc] init];
    [_shaderManager loadShaders];
    
    self.effect = [[GLKBaseEffect alloc] init];
@@ -215,8 +219,6 @@ GLfloat gCubeVertexData[216] =
    self.backBuffer = [[HHFrameBufferObject alloc]init];
    [self.backBuffer setup];
    
-    self.scene = [[HHScene alloc]init];
-    [self.scene setup];
 }
 
 - (void)tearDownGL
@@ -374,6 +376,7 @@ GLfloat gCubeVertexData[216] =
    _dragging =FALSE;
 }
 
+#pragma mark - Save to TGA
 -(NSString*)generateDBName
 {
    
