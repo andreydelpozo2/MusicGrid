@@ -142,6 +142,8 @@ GLfloat gCubeVertexData[216] =
     
     self.scene = [[HHScene alloc]init];
     [self.scene setup];
+    self.scene.shaderManager = self.shaderManager;
+    self.scene.camera = self.camera;
 }
 
 -(void)initGestureRecognizers

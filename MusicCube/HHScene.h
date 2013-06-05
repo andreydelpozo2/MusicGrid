@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "HHActor.h"
+#import "HHShaderManager.h"
+#import "HHCamera.h"
 @interface HHScene : NSObject
+@property (weak,nonatomic) HHShaderManager *shaderManager;
+@property (weak,nonatomic) HHCamera *camera;
 -(id)init;
 -(void)setup;
 -(void)dealloc;
