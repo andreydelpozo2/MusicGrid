@@ -12,9 +12,9 @@
 @interface HHActor : NSObject
 @property (strong,nonatomic) HHBatch* mesh;
 -(void)render;
--(void)SetRotationMaxtrix:(GLKMatrix4)rot;
--(void)SetRotation:(GLfloat)radians around:(GLKVector3)axis;
--(void)SetTranslation:(GLKVector3)trans;
--(void)SetTranslationX:(GLfloat)x andY:(GLfloat)y andZ:(GLfloat)z;
+-(void)setRotationMatrix:(GLKMatrix4)rot;
+-(void)rotateBy:(GLfloat)radians around:(GLKVector3)axis;
+-(void)translate:(GLKVector3)trans;
+-(void)translateX:(GLfloat)x andY:(GLfloat)y andZ:(GLfloat)z;
 -(GLKMatrix4)GetModelMatrix;
 @end

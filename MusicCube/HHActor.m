@@ -24,22 +24,22 @@
     [self.mesh draw];
 }
 
--(void)SetRotationMaxtrix:(GLKMatrix4)rot
+-(void)setRotationMatrix:(GLKMatrix4)rot
 {
     _rotationMatrix = rot;
 }
 
--(void)SetRotation:(GLfloat)radians around:(GLKVector3)axis
+-(void)rotateBy:(GLfloat)radians around:(GLKVector3)axis
 {
     _rotationMatrix = GLKMatrix4MakeRotation(radians, axis.x, axis.y, axis.z);
 }
 
--(void)SetTranslation:(GLKVector3)trans
+-(void)translate:(GLKVector3)trans
 {
     _translation = trans;
 }
 
--(void)SetTranslationX:(GLfloat)x andY:(GLfloat)y andZ:(GLfloat)z
+-(void)translateX:(GLfloat)x andY:(GLfloat)y andZ:(GLfloat)z
 {
     _translation.x = x;
     _translation.y = y;
