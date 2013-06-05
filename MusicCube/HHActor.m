@@ -46,7 +46,7 @@
     _translation.z = z;
 }
 
--(GLKMatrix4)GetModelMatrix
+-(GLKMatrix4)getModelMatrix
 {
     
     GLKMatrix4 mt = GLKMatrix4MakeTranslation(_translation.x, _translation.y, _translation.z);

@@ -16,5 +16,5 @@
 -(void)rotateBy:(GLfloat)radians around:(GLKVector3)axis;
 -(void)translate:(GLKVector3)trans;
 -(void)translateX:(GLfloat)x andY:(GLfloat)y andZ:(GLfloat)z;
--(GLKMatrix4)GetModelMatrix;
+-(GLKMatrix4)getModelMatrix;
 @end
