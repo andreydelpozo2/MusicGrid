@@ -6,9 +6,12 @@
 //  Copyright (c) 2013 Andrey Del Pozo. All rights reserved.
 //
 
+#import <GLKit/GLKit.h>
 #import "HHScene.h"
 #import "HHGridActor.h"
+#import "HHSolidShapes.h"
 #include "scene.h"
+
 
 //interface cpp with objc
 //http://robnapier.net/blog/wrapping-cppfinal-edition-759
@@ -70,12 +73,21 @@
     
     [floorMesh end];
     floor.mesh = floorMesh;
+    GLKVector4 color = {0.0f,1.0f,0.0f,1.0f};
+    floor.color = color;
     [self addActor:floor];
+    [self addCube:0 andy:0];
 }
 
 -(void)addCube:(int)x andy:(int)y
 {
-   _scn->addCube(x, y);
+    HHActor* cube = [[HHActor alloc]init];
+    cube.mesh  = [HHSolidShapes makeCubeWithSide:1.0];
+    [cube translateX:3.0f andY:.5f andZ:3.0f];
+    GLKVector4 color = {1.0f,0.0f,0.0f,1.0f};
+    cube.color = color;
+
+    [self addActor:cube];
 }
 
 -(void)addActor:(HHActor*)actor
@@ -89,9 +101,12 @@
 
 -(void)render
 {
-   for(HHActor* act in self.actors)
-   {
-      [act render];
-   }
+    GLKMatrix4 base = GLKMatrix4Multiply([self.camera getProjection], [self.camera getMatrix]);
+    for(HHActor* act in self.actors)
+    {
+        GLKMatrix4 mvp = GLKMatrix4Multiply(base, [act getModelMatrix]);
+        [self.shaderManager useFlatShaderWithMVP:mvp andColor:act.color];
+        [act render];
+    }
 }
 @end
